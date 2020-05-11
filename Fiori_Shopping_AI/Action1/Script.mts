@@ -26,4 +26,3 @@ AIUtil("left_triangle", micNoText, micFromTop, 1).Click							'Click the arrow n
 AIUtil("button", "").Click														'Click the cart icon to collapse the shopping cart slide out frame.
 Browser("Shopping Cart").Close													'Close the browser window
 
-
