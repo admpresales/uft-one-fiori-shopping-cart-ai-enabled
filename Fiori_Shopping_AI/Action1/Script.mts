@@ -10,14 +10,14 @@ Browser("Shopping Cart").ClearCache												'Clear the browser cache, the app
 Browser("Shopping Cart").Navigate ("https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/index.html")	'Navigate to the application
 Browser("Shopping Cart").Maximize												'Maximize the browser or the objects won't be visible
 AIUtil.SetContext Browser("Shopping Cart")										'Instruct the AI SDK to start working against the browser
-AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet in the category menu (default is Laptops).  This is to show how you could potentially data drive this
+AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet in the category menu, originally created with the Laptops category
 AIUtil.FindTextBlock("Available", micFromLeft, 1).Click							'Click on the first available product 
 AIUtil.FindTextBlock("Available", micFromLeft, 2).Click							'Click on the second available product
 AIUtil("button", "Add to Cart").Click											'Click on the Add to Cart button.
 AIUtil("shopping_cart").Click													'Click the shopping cart icon
-AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up
+AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up, could replace with a .Highlight
 AIUtil("pencil").Click															'Click the edit icon, shaped like a pencile
-AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up
+AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up, could replace with a .Highlight
 Browser("Shopping Cart").Maximize												'Maximize the browser or the objects won't be visible
 AIUtil("close").Click															'Click the delete button for the first item in the cart, script assumes there is only one item in the cart
 AIUtil("button", "Delete").Click												'Click the Delete button in the pop-up frame
