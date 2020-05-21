@@ -16,7 +16,7 @@ AIUtil.FindTextBlock("Available", micFromLeft, 2).Click							'Click on the seco
 AIUtil("button", "Add to Cart").Click											'Click on the Add to Cart button.
 AIUtil("shopping_cart").Click													'Click the shopping cart icon
 AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up, could replace with a .Highlight
-AIUtil("pencil").Click															'Click the edit icon, shaped like a pencile
+AIUtil("pencil").Click															'Click the edit icon, shaped like a pencil
 AIUtil.FindTextBlock(CategoryListHeader).Click 50, 1							'Click on the text of the category header to allow the application to catch up, could replace with a .Highlight
 Browser("Shopping Cart").Maximize												'Maximize the browser or the objects won't be visible
 AIUtil("close").Click															'Click the delete button for the first item in the cart, script assumes there is only one item in the cart
