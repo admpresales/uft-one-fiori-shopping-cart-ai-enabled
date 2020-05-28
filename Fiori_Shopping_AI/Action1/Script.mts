@@ -5,12 +5,16 @@
 Dim Category, CategoryListHeader												'Initialize the variables to be used to enable data driving
 
 Category = DataTable.GlobalSheet.GetParameter("Categories")						'Set the value for the Category that will be clicked on
-CategoryListHeader = "< " & DataTable.GlobalSheet.GetParameter("Categories")	'Set the value for the Category header in the list of products
+CategoryListHeader = "< " & Category											'Set the value for the Category header in the list of products
 Browser("Browser").ClearCache													'Clear the browser cache, the application sometimes gets pushed changes that require a clear cache
 Browser("Browser").Navigate ("https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/index.html")	'Navigate to the application
 Browser("Browser").Maximize														'Maximize the browser or the objects won't be visible
 AIUtil.SetContext Browser("Browser")											'Instruct the AI SDK to start working against the browser
 AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet in the category menu, originally created with the Laptops category
+'=================================================================================================================================================================================
+'	Example of an AI sync point
+'=================================================================================================================================================================================
+AIUtil.FindTextBlock("EUR", micFromTop, 7).Exist(20)							'Wait for the page to load to show th text EUR 7 times on the screen (so the left pane list of products has loaded)
 AIUtil.FindTextBlock("Available", micFromLeft, 1).Click							'Click on the first available product 
 AIUtil.FindTextBlock("Available", micFromLeft, 2).Click							'Click on the second available product
 AIUtil("button", "Add to Cart").Click											'Click on the Add to Cart button.
