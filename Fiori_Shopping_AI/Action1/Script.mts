@@ -14,7 +14,7 @@ AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet
 '=================================================================================================================================================================================
 '	Example of an AI sync point
 '=================================================================================================================================================================================
-AIUtil.FindTextBlock("EUR", micFromTop, 7).Exist(20)							'Wait for the page to load to show th text EUR 7 times on the screen (so the left pane list of products has loaded)
+AIUtil.FindTextBlock("EUR", micFromTop, 5).Exist(20)							'Wait for the page to load to show th text EUR 5 times on the screen (so the left pane list of products has loaded)
 AIUtil.FindTextBlock("Available", micFromLeft, 1).Click							'Click on the first available product 
 AIUtil.FindTextBlock("Available", micFromLeft, 2).Click							'Click on the second available product
 AIUtil("button", "Add to Cart").Click											'Click on the Add to Cart button.
