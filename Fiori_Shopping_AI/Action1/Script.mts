@@ -2,7 +2,7 @@
 '	Note that the demo application has the text "Available" on both the left frame, list of products, and in the middle, advertisement frame.
 '		This is why we're using micFromLeft rather than miFromTop, because some categories will have the 2nd available product below the advertisement frame products
 '=================================================================================================================================================================================
-Dim Category, CategoryListHeader												'Initialize the variables to be used to enable data driving
+Dim Category, CategoryListHeader, rc											'Initialize the variables to be used to enable data driving
 
 Category = DataTable.GlobalSheet.GetParameter("Categories")						'Set the value for the Category that will be clicked on
 CategoryListHeader = "< " & Category											'Set the value for the Category header in the list of products
@@ -14,7 +14,7 @@ AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet
 '=================================================================================================================================================================================
 '	Example of an AI sync point
 '=================================================================================================================================================================================
-AIUtil.FindTextBlock("EUR", micFromTop, 5).Exist(20)							'Wait for the page to load to show th text EUR 5 times on the screen (so the left pane list of products has loaded)
+rc = AIUtil.FindTextBlock("EUR", micFromTop, 5).Exist(20)							'Wait for the page to load to show th text EUR 5 times on the screen (so the left pane list of products has loaded)
 AIUtil.FindTextBlock("Available", micFromLeft, 1).Click							'Click on the first available product 
 AIUtil.FindTextBlock("Available", micFromLeft, 2).Click							'Click on the second available product
 AIUtil("button", "Add to Cart").Click											'Click on the Add to Cart button.
