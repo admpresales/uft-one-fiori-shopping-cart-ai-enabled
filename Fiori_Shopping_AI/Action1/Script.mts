@@ -4,6 +4,13 @@
 '=================================================================================================================================================================================
 Dim Category, CategoryListHeader, rc											'Initialize the variables to be used to enable data driving
 
+'================================================================================================
+'This code will make it so that the script will be able to be run in both 15.0.1 and 15.0.2+ environment
+If isempty(micAnyText) and not isempty(micNoText) Then
+    micAnyText = micNoText    
+End If
+'================================================================================================
+
 Category = DataTable.GlobalSheet.GetParameter("Categories")						'Set the value for the Category that will be clicked on
 CategoryListHeader = "< " & Category											'Set the value for the Category header in the list of products
 Browser("Browser").ClearCache													'Clear the browser cache, the application sometimes gets pushed changes that require a clear cache
@@ -26,7 +33,7 @@ Browser("Browser").Maximize														'Maximize the browser or the objects wo
 AIUtil("close").Click															'Click the delete button for the first item in the cart, script assumes there is only one item in the cart
 AIUtil("button", "Delete").Click												'Click the Delete button in the pop-up frame
 AIUtil.FindTextBlock("Save Changes").Click										'Click the Save Changes in the cart slide out frame
-AIUtil("left_triangle", micNoText, micFromTop, 1).Click							'Click the arrow next to the category header to move back to the main categories page
+AIUtil("left_triangle", micAnyText, micFromTop, 1).Click							'Click the arrow next to the category header to move back to the main categories page
 AIUtil("button", "").Click														'Click the cart icon to collapse the shopping cart slide out frame.
 Browser("Browser").Close														'Close the browser window
 
