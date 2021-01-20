@@ -4,6 +4,19 @@
 '=================================================================================================================================================================================
 Dim Category, CategoryListHeader, rc											'Initialize the variables to be used to enable data driving
 
+While Browser("CreationTime:=0").Exist(0)   												'Loop to close all open browsers
+	Browser("CreationTime:=0").Close 
+Wend
+BrowserExecutable = DataTable.Value("BrowserName") & ".exe"
+SystemUtil.Run BrowserExecutable,"","","",3													'launch the browser specified in the data table
+Set AppContext=Browser("CreationTime:=0")													'Set the variable for what application (in this case the browser) we are acting upon
+
+AppContext.ClearCache																		'Clear the browser cache to ensure you're getting the latest forms from the application
+AppContext.Navigate DataTable.Value("URL")													'Navigate to the application URL
+AppContext.Maximize																			'Maximize the application to give the best chance that the fields will be visible on the screen
+AppContext.Sync																				'Wait for the browser to stop spinning
+AIUtil.SetContext AppContext																'Tell the AI engine to point at the application
+
 '================================================================================================
 'This code will make it so that the script will be able to be run in both 15.0.1 and 15.0.2+ environment
 If isempty(micAnyText) and not isempty(micNoText) Then
@@ -13,10 +26,6 @@ End If
 
 Category = DataTable.GlobalSheet.GetParameter("Categories")						'Set the value for the Category that will be clicked on
 CategoryListHeader = "< " & Category											'Set the value for the Category header in the list of products
-Browser("Browser").ClearCache													'Clear the browser cache, the application sometimes gets pushed changes that require a clear cache
-Browser("Browser").Navigate ("https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/index.html")	'Navigate to the application
-Browser("Browser").Maximize														'Maximize the browser or the objects won't be visible
-AIUtil.SetContext Browser("Browser")											'Instruct the AI SDK to start working against the browser
 AIUtil.FindTextBlock(Category).Click											'Click the value in the datasheet in the category menu, originally created with the Laptops category
 '=================================================================================================================================================================================
 '	Example of an AI sync point
@@ -34,6 +43,7 @@ AIUtil("close").Click															'Click the delete button for the first item 
 AIUtil("button", "Delete").Click												'Click the Delete button in the pop-up frame
 AIUtil.FindTextBlock("Save Changes").Click										'Click the Save Changes in the cart slide out frame
 AIUtil("left_triangle", micAnyText, micFromTop, 1).Click							'Click the arrow next to the category header to move back to the main categories page
-AIUtil("button", "").Click														'Click the cart icon to collapse the shopping cart slide out frame.
+AIUtil("shopping_cart", micAnyText, micFromTop, 1).Click													'Click the cart icon to collapse the shopping cart slide out frame.
+'AIUtil("button", "").Click														'Click the cart icon to collapse the shopping cart slide out frame.
 Browser("Browser").Close														'Close the browser window
 
