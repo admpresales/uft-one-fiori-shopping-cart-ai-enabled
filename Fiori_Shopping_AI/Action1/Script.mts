@@ -2,7 +2,11 @@
 '	Note that the demo application has the text "Available" on both the left frame, list of products, and in the middle, advertisement frame.
 '		This is why we're using micFromLeft rather than miFromTop, because some categories will have the 2nd available product below the advertisement frame products
 '=================================================================================================================================================================================
-Dim Category, CategoryListHeader, rc											'Initialize the variables to be used to enable data driving
+Dim Category, CategoryListHeader, rc, oShell											'Initialize the variables
+
+Set oShell = CreateObject ("WSCript.shell")
+oShell.run "powershell -command ""Start-Service mediaserver"""
+Set oShell = Nothing
 
 While Browser("CreationTime:=0").Exist(0)   												'Loop to close all open browsers
 	Browser("CreationTime:=0").Close 
